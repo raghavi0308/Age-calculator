@@ -35,6 +35,7 @@ function get() {
   let totalMonths = ageYear * 12 + ageMonth;
   let totalDays = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
 
+  // Display results in HTML instead of console
   document.getElementById("yearResult").innerText = `Age in Years: ${ageYear}`;
   document.getElementById("monthResult").innerText = `Age in Months: ${totalMonths}`;
   document.getElementById("dayResult").innerText = `Age in Days: ${totalDays}`;
