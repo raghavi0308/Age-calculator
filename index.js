@@ -1,43 +1,41 @@
- 
+function get() {
+  let dat = document.getElementById("dates").value;
 
+  if (!dat) {
+    alert("Please select a valid date.");
+    return;
+  }
 
+  let birthDate = new Date(dat);
+  let today = new Date();
 
-let getDate = new Date();
-let curDate = getDate.getDate();
-let curMonth = getDate.getMonth();
-let curYear = getDate.getFullYear();
- 
+  let curYear = today.getFullYear();
+  let curMonth = today.getMonth() + 1;
+  let curDate = today.getDate();
 
-function get(){
-let dat = document.getElementById("dates").value;
- 
-    let year = parseInt(dat.substring(0,4));
-    let month = parseInt(dat.substring(5,7));
-    let date = parseInt(dat.substring(8,10));
+  let year = birthDate.getFullYear();
+  let month = birthDate.getMonth() + 1;
+  let date = birthDate.getDate();
 
-//  calculation for year
-  let yrResult = curYear-(year+1);
-   console.log("Age in Years : "+yrResult);
+  // Calculate year difference
+  let ageYear = curYear - year;
+  let ageMonth = curMonth - month;
+  let ageDay = curDate - date;
 
+  if (ageDay < 0) {
+    ageDay += 30;
+    ageMonth--;
+  }
 
-//  calculation for month
-let mnResult = 12-month;
-let yrs = yrResult*12;
-console.log("Age in Months : "+(yrs+mnResult));
- 
-  
-    
-//  calculation for Date
-let totaldys = 365;
-let day = 30;
+  if (ageMonth < 0) {
+    ageMonth += 12;
+    ageYear--;
+  }
 
-let dtResult = yrResult*365;
-// console.log(dtResult);
-let newMonth = mnResult*30
-// console.log(newMonth);
-let newDate = 30-date;
-// console.log( +newDate);
-let final = dtResult+(newMonth-newDate);
-console.log("Age in Days : "+final);
- 
+  let totalMonths = ageYear * 12 + ageMonth;
+  let totalDays = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
+
+  document.getElementById("yearResult").innerText = `Age in Years: ${ageYear}`;
+  document.getElementById("monthResult").innerText = `Age in Months: ${totalMonths}`;
+  document.getElementById("dayResult").innerText = `Age in Days: ${totalDays}`;
 }
